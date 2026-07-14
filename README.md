@@ -1,38 +1,71 @@
-# VITY
+<div align="center">
 
-> The phone-first AI agent that is the college helpline — grounded answers, disciplined escalation, and handoffs staff can act on in seconds.
+# 📞 VITY
 
-VITY is an AI voice agent that answers a college's helpline directly. Students and parents call in, ask their question out loud, and VITY converts speech to text, retrieves grounded answers from the college's own approved documents (fee schedules, exam rules, hostel policies, procedures), and speaks back a cited answer. When it isn't confident, it asks 2-3 targeted follow-up questions to gather missing details, then either connects the caller to the right department or files a structured, pre-filled ticket — so staff spend less time answering the same routine questions over and over.
+### The phone-first AI agent that *is* the college helpline.
 
-Built on top of **Saathi**, an existing Node/Express + Twilio voice-agent codebase, repurposed from a rural-outreach missed-call bot into a campus-side inbound helpdesk triage agent.
+**Grounded answers. Disciplined escalation. Handoffs staff can act on in seconds.**
 
----
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
+[![Twilio](https://img.shields.io/badge/Twilio-Voice%20%7C%20SMS%20%7C%20WhatsApp-F22F46?style=for-the-badge&logo=twilio&logoColor=white)](https://www.twilio.com)
+[![RAG](https://img.shields.io/badge/RAG-ChromaDB-4B8BBE?style=for-the-badge)](#ai-pipeline)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](#contributing)
 
-## Table of Contents
+*Built for VIT Bhopal — because staff shouldn't answer the same 5 questions a hundred times a day.*
 
-- [Why VITY](#why-vity)
-- [How It Works](#how-it-works)
-- [Architecture](#architecture)
-- [AI Pipeline](#ai-pipeline)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+</div>
 
 ---
 
-## Why VITY
+## 🎯 The Pitch
 
-Campus staff repeatedly answer the same questions about forms, approvals, schedules, and procedures. Most of that traffic still arrives by phone, since phone remains the primary channel for parents and less app-literate students. A web chatbot doesn't fix this — it adds a channel while phone volume stays the same.
+Every college department fields the same phone calls, over and over — fee deadlines, exam rules, hostel forms, library fines. **VITY is the AI that picks up that phone.**
 
-VITY intercepts the actual channel generating the workload. It answers what it can verify, is honest about what it can't, and hands off only what genuinely needs a human — with enough structure that staff can act on it immediately instead of parsing a raw complaint.
+A student or parent calls the helpline. VITY answers, listens, converts speech to text, and retrieves **grounded answers** from the college's own approved documents — never a guess, always a citation. When it isn't sure, it doesn't bluff: it asks 2-3 sharp follow-up questions, tags urgency, and either bridges the call to a real human or files a **structured, pre-filled ticket** staff can act on immediately.
 
-## How It Works
+> 🧠 Not a chatbot wearing a phone costume. It's the phone line itself, rebuilt to think.
+
+Built on top of **Saathi** — an already-working Node/Express + Twilio voice-agent codebase — repurposed from a rural-outreach missed-call bot into a campus-side inbound helpdesk triage agent.
+
+| | |
+|---|---|
+| 🎙️ **Voice-first** | No app. No login. Just a phone call. |
+| 📚 **Grounded** | Every answer cites a real, approved source document. |
+| 🚦 **Disciplined** | Three-tier confidence: confident → partial → escalate. Never fakes certainty. |
+| 🎫 **Actionable handoff** | Staff get a filled-out ticket, not a raw transcript dump. |
+| 🔁 **Remembers you** | Repeat callers get context-aware greetings, not a cold start. |
+| 📊 **Self-improving** | Every escalation logs a knowledge gap — staff see what's *actually* missing. |
+
+---
+
+## 📋 Table of Contents
+
+- [🤔 Why VITY](#why-vity)
+- [⚙️ How It Works](#how-it-works)
+- [🏗️ Architecture](#architecture)
+- [🧬 AI Pipeline](#ai-pipeline)
+- [✅ Prerequisites](#prerequisites)
+- [🚀 Installation](#installation)
+- [🔧 Configuration](#configuration)
+- [▶️ Usage](#usage)
+- [📁 Project Structure](#project-structure)
+- [🗺️ Roadmap](#roadmap)
+- [🤝 Contributing](#contributing)
+- [📄 License](#license)
+- [✉️ Contact](#contact)
+
+---
+
+## 🤔 Why VITY
+
+Campus staff repeatedly answer the same questions about forms, approvals, schedules, and procedures. Most of that traffic still arrives by phone — parents and less app-literate students overwhelmingly call rather than click. A web chatbot doesn't fix this. It just adds a channel while the phone keeps ringing exactly as much as before.
+
+**VITY intercepts the channel that's actually generating the workload.** It answers what it can verify, is honest about what it can't, and hands off only what genuinely needs a human — with enough structure that staff can act on it in seconds, not minutes.
+
+> 💬 *"I don't know" is a feature, not a bug.* VITY is built to refuse gracefully, not hallucinate confidently.
+
+## ⚙️ How It Works
 
 1. A caller dials the helpline number. VITY answers directly.
 2. Speech-to-text converts the spoken question into text.
@@ -60,7 +93,7 @@ flowchart TD
     G -->|Caller accepts| H
 ```
 
-## Architecture
+## 🏗️ Architecture
 
 ```mermaid
 flowchart LR
@@ -97,7 +130,7 @@ flowchart LR
     RAG --> Dashboard
 ```
 
-## AI Pipeline
+## 🧬 AI Pipeline
 
 ```mermaid
 sequenceDiagram
@@ -126,7 +159,7 @@ sequenceDiagram
     end
 ```
 
-## Prerequisites
+## ✅ Prerequisites
 
 Before you begin, make sure you have:
 
@@ -138,7 +171,7 @@ Before you begin, make sure you have:
 - (Optional) **Bhashini API credentials** for Hindi voice-note transcription
 - **ngrok** or a deployed public HTTPS URL, so Twilio can reach your local server during development
 
-## Installation
+## 🚀 Installation
 
 Clone the repository and install backend dependencies:
 
@@ -154,7 +187,7 @@ Copy the environment template and fill in your own credentials:
 cp .env.example .env
 ```
 
-## Configuration
+## 🔧 Configuration
 
 Set the following variables in your `.env` file:
 
@@ -191,7 +224,7 @@ BHASHINI_API_KEY=your_ulca_api_key
 
 Department contacts, document folders, and college-specific settings live in `backend/config/departments.json` — edit this to add or remove departments without touching any code.
 
-## Usage
+## ▶️ Usage
 
 **Just want to see the dashboard UI?**
 
@@ -222,7 +255,7 @@ node rag/ingest.js --dir ./data/documents
 npm start
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 vity/
@@ -250,7 +283,7 @@ vity/
     └── .env.example
 ```
 
-## Roadmap
+## 🗺️ Roadmap
 
 - [x] Inbound call handling with speech-to-text
 - [x] RAG retrieval over approved department documents
@@ -265,17 +298,29 @@ vity/
 - [ ] Real authentication and role-based dashboard access
 - [ ] Integration with existing college ERP/ticketing systems
 
-## Contributing
+## 🤝 Contributing
 
 Issues and pull requests are welcome. If you're proposing a larger change (new department logic, a different LLM provider, a schema change to tickets), open an issue first so the approach can be discussed before implementation.
 
-## License
+## 📄 License
 
 MIT — see [`LICENSE`](./LICENSE).
 
-## Contact
+## ✉️ Contact
 
-Built for [Hackathon Name] at VIT Bhopal.
+Built for **[Hackathon Name]** at VIT Bhopal. 🎓
 
 - Team: *[team name placeholder]*
 - Maintainers: *[names/contacts placeholder]*
+
+---
+
+<div align="center">
+
+### 📞 One call. No app. No wait. No repeated questions.
+
+**VITY — the helpline that finally knows when to say "let me get someone for you."**
+
+⭐ *If this project is useful or interesting, consider starring the repo.*
+
+</div>
